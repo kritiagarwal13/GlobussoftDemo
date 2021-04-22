@@ -11,49 +11,60 @@ import SDWebImage
 class UserProfileViewController: UIViewController {
     
     //MARK:- @IBOutlets
-    @IBOutlet weak var imgVw: UIImageView!
-    @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblLastSeen: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var btnLike: UIButton!
     
     
     //MARK:- Properties
     var userDetails: UserDataModel?
-    var titleArr = [k.gender, k.age, k.id, k.email, k.phone, k.favColor, k.location]
+    var titleArr = ["", k.gender, k.age, k.id, k.email, k.phone, k.favColor, k.location]
+    var userImage : UIImage?
+    var isLiked = false
+    var distanceAway = ""
     
     //MARK:- Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
-        
     }
 
     
     //MARK:- Extra methods
+    
     func initialSetup() {
-        let imageUrlStr = userDetails?.picture?.replacingOccurrences(of: "'\'", with: "") ?? ""
-        let imgUrl = URL(string: imageUrlStr)!
-        let config = URLSessionConfiguration.default
-        config.waitsForConnectivity = true
-        config.timeoutIntervalForResource = 60
-        URLSession(configuration: config).dataTask(with: imgUrl) { data, response, error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-
-            // use your data here
-            self.imgVw.sd_setImage(with: imgUrl) { (image, err, cache, URL) in
-                
-            }
-        }.resume()
-        self.lblName.text = userDetails?.name
-        self.lblLastSeen.text = userDetails?.lastSeen
+        self.btnLike.roundCornerWithShadow(shadowColor: .lightGray, radius: 10, borderWidth: 1, borderColor: .link, shadowOpacity: 1, shadowRadius: 1, shadowOffsetWidth: 1, shadowOffsetHeight: 1)
+        if isLiked {
+            self.btnLike.backgroundColor = UIColor.link
+            self.btnLike.setTitleColor(.white, for: .normal)
+            self.btnLike.tintColor = .white
+        } else {
+            self.btnLike.backgroundColor = UIColor.white
+            self.btnLike.setTitleColor(.link, for: .normal)
+            self.btnLike.tintColor = .link
+        }
+        
+        setupTableView()
+    }
+    
+    func setupTableView() {
+        tableView.register(UINib(nibName: "UserProfileImageTVC", bundle: nil), forCellReuseIdentifier: "UserProfileImageTVC")
+        tableView.register(UINib(nibName: "UserDetailsTVC", bundle: nil), forCellReuseIdentifier: "UserDetailsTVC")
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     
     //MARK:- @IBActions
     
-
+    @IBAction func likeTapped(_ sender: UIButton) {
+        if let userDeets = userDetails {
+            likedUsers.append(userDeets)
+        }
+        self.btnLike.backgroundColor = UIColor.link
+        self.btnLike.setTitleColor(.white, for: .normal)
+        self.btnLike.tintColor = .white
+    }
+    
 }
 
 
@@ -63,51 +74,55 @@ extension UserProfileViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "profileDetailCell", for: indexPath) as! ProfileDetailCell
-        switch indexPath.row {
-        case 0:
-            cell.lblHeader.text = titleArr[indexPath.row]
-            cell.detailTF.text = userDetails?.gender
-        case 1:
-            cell.lblHeader.text = titleArr[indexPath.row]
-            cell.detailTF.text = "\(userDetails?.age ?? 0)"
-        case 2:
-            cell.lblHeader.text = titleArr[indexPath.row]
-            cell.detailTF.text = userDetails?._id
-        case 3:
-            cell.lblHeader.text = titleArr[indexPath.row]
-            cell.detailTF.text = userDetails?.email
-        case 4:
-            cell.lblHeader.text = titleArr[indexPath.row]
-            cell.detailTF.text = userDetails?.phone
-        case 5:
-            cell.lblHeader.text = titleArr[indexPath.row]
-            cell.detailTF.text = userDetails?.favoriteColor
-        case 6:
-            cell.lblHeader.text = titleArr[indexPath.row]
-            cell.detailTF.text = "[\(userDetails?.geoLocation?.latitude ?? 0.0), \(userDetails?.geoLocation?.longitude ?? 0.0)]"
-        default:
-            break
+        
+        if indexPath.row == 0 {
+            let imgcell = tableView.dequeueReusableCell(withIdentifier: "UserProfileImageTVC", for: indexPath) as! UserProfileImageTVC
+            let imgUrlStr =  userDetails?.picture?.replacingOccurrences(of: "'\'", with: "") ?? ""
+            print(imgUrlStr)
+            imgcell.setCellData(name: userDetails?.name ?? "", lastSeen: userDetails?.lastSeen ?? "", img: imgUrlStr)
+            imgcell.userImgVw.image = userImage
+            return imgcell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UserDetailsTVC", for: indexPath) as! UserDetailsTVC
+            switch indexPath.row {
+            case 1:
+                cell.setCellData(title: titleArr[indexPath.row], value: userDetails?.gender ?? "", isLocation: false)
+                
+            case 2:
+                cell.setCellData(title: titleArr[indexPath.row], value: "\(userDetails?.age ?? 0)", isLocation: false)
+                
+            case 3:
+                cell.setCellData(title: titleArr[indexPath.row], value: userDetails?._id ?? "", isLocation: false)
+                
+            case 4:
+                cell.setCellData(title: titleArr[indexPath.row], value: userDetails?.email ?? "", isLocation: false)
+                
+            case 5:
+                cell.setCellData(title: titleArr[indexPath.row], value: userDetails?.phone ?? "", isLocation: false)
+                
+            case 6:
+                cell.setCellData(title: titleArr[indexPath.row], value: userDetails?.favoriteColor ?? "", isLocation: false)
+                
+            case 7:
+                cell.setCellData(title: titleArr[indexPath.row], value: distanceAway, isLocation: true)
+                
+            default:
+                break
+            }
+            
+            return cell
         }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
-    }
-    
-    
-}
-
-
-class ProfileDetailCell: UITableViewCell {
-    
-    @IBOutlet weak var lblHeader: UILabel!
-    @IBOutlet weak var detailTF: UITextField!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
         
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 250
+        } else {
+            return 85
+        }
+    }
+    
+    
 }
+

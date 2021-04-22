@@ -56,5 +56,7 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Demo app would like to access your location</string>
 </dict>
 </plist>
