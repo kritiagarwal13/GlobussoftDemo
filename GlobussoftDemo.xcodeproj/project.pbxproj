@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		869B1971E003480215BEF445 /* Pods_GlobussoftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3D32655E72FC857B08AF737 /* Pods_GlobussoftDemo.framework */; };
+		D647483F263197E900968831 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D647483D263197E900968831 /* PickerView.swift */; };
+		D6474840263197E900968831 /* PickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D647483E263197E900968831 /* PickerView.xib */; };
 		D6D422E826308C34003CD711 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D422E726308C34003CD711 /* Constants.swift */; };
 		D6D422ED26309FA4003CD711 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D422EC26309FA4003CD711 /* Extensions.swift */; };
 		D6D42354263151FF003CD711 /* UserListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D42352263151FF003CD711 /* UserListTVC.swift */; };
@@ -44,6 +46,8 @@
 /* Begin PBXFileReference section */
 		3B67E20CDFDE72FD0673A4C2 /* Pods-GlobussoftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobussoftDemo.debug.xcconfig"; path = "Target Support Files/Pods-GlobussoftDemo/Pods-GlobussoftDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		A031B8D47E48AAA3ED0AC71B /* Pods-GlobussoftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobussoftDemo.release.xcconfig"; path = "Target Support Files/Pods-GlobussoftDemo/Pods-GlobussoftDemo.release.xcconfig"; sourceTree = "<group>"; };
+		D647483D263197E900968831 /* PickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		D647483E263197E900968831 /* PickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerView.xib; sourceTree = "<group>"; };
 		D6D422E726308C34003CD711 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D6D422EC26309FA4003CD711 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D6D42352263151FF003CD711 /* UserListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTVC.swift; sourceTree = "<group>"; };
@@ -109,6 +113,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D647483C263197E900968831 /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				D647483D263197E900968831 /* PickerView.swift */,
+				D647483E263197E900968831 /* PickerView.xib */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
 		D6D422E626308C29003CD711 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +130,7 @@
 				D6D42362263161FE003CD711 /* ImagePicker.swift */,
 				D6D4236526316253003CD711 /* Utilities.swift */,
 				D6D4237A263183E4003CD711 /* UserSessionManager.swift */,
+				D647483C263197E900968831 /* Picker */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -300,6 +314,7 @@
 				D6D42355263151FF003CD711 /* UserListTVC.xib in Resources */,
 				D6D4235F2631522E003CD711 /* UserDetailsTVC.xib in Resources */,
 				D6FAD8E22628A72900DFC809 /* LaunchScreen.storyboard in Resources */,
+				D6474840263197E900968831 /* PickerView.xib in Resources */,
 				D6D4235A2631521E003CD711 /* UserProfileImageTVC.xib in Resources */,
 				D6FAD8DF2628A72900DFC809 /* Assets.xcassets in Resources */,
 				D6FAD8DD2628A72600DFC809 /* Main.storyboard in Resources */,
@@ -367,6 +382,7 @@
 				D6D42363263161FE003CD711 /* ImagePicker.swift in Sources */,
 				D6FAD90926290B7B00DFC809 /* UserDataModel.swift in Sources */,
 				D6FAD8D62628A72600DFC809 /* AppDelegate.swift in Sources */,
+				D647483F263197E900968831 /* PickerView.swift in Sources */,
 				D6D423592631521E003CD711 /* UserProfileImageTVC.swift in Sources */,
 				D6D423752631824F003CD711 /* MainTabBar.swift in Sources */,
 				D6FAD9042629061C00DFC809 /* AppNetworking.swift in Sources */,

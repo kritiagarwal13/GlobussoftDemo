@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var genderTF: UITextField!
     @IBOutlet weak var lblAddImg: UILabel!
     @IBOutlet weak var btnRegister: UIButton!
+    @IBOutlet weak var btnGender: UIButton!
     
     //MARK:- Properties
     var imagePicker : ImagePicker?
@@ -54,7 +55,7 @@ class ViewController: UIViewController {
         UserSessionManager.shared.setDOB(value: nameDOB.text)
         UserSessionManager.shared.setGender(value: genderTF.text)
         UserSessionManager.shared.setAvatar(image: pickedImage)
-        UserSessionManager.shared.setIsRegistered(value: true)
+//        UserSessionManager.shared.setIsRegistered(value: true)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.navigateToVC()
         
@@ -66,9 +67,24 @@ class ViewController: UIViewController {
         imagePicker?.uploadImage()
     }
     
+    @IBAction func genderTapped(_ sender: UIButton) {
+        Utilities.initPicker(title: "Select Gender", currentSelection: 0, delegate: self, data: ["male", "female"])
+    }
     
 }
 
+
+extension ViewController: PickerViewDelegate {
+    func doneTapped(value: String, index: Int?) {
+        self.genderTF.text = value
+    }
+    
+    func cancelTapped() {
+        
+    }
+    
+    
+}
 
 extension ViewController : ImagePickerDelegate {
     func imagePicked(image: UIImage) {

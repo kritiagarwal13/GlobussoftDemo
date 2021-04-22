@@ -81,11 +81,18 @@
                                     <action selector="registerTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pgu-xO-eCs"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="65d-0C-MEP">
+                                <rect key="frame" x="30" y="404" width="354" height="40"/>
+                                <connections>
+                                    <action selector="genderTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rPm-yd-o7x"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="f2h-yp-Lts" firstAttribute="top" secondItem="jox-g6-hUk" secondAttribute="top" id="0Gg-OX-XeO"/>
+                            <constraint firstItem="65d-0C-MEP" firstAttribute="leading" secondItem="fYD-Ys-RIg" secondAttribute="leading" id="3fH-I7-dr8"/>
                             <constraint firstItem="DYX-tZ-QOf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="6dg-wP-iYe"/>
                             <constraint firstItem="mUo-gY-Nfg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="DV5-3V-3Ms"/>
                             <constraint firstItem="jox-g6-hUk" firstAttribute="top" secondItem="mUo-gY-Nfg" secondAttribute="bottom" constant="20" id="GCI-SM-SiC"/>
@@ -97,16 +104,20 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mUo-gY-Nfg" secondAttribute="trailing" constant="20" id="YVg-Wu-iEI"/>
                             <constraint firstItem="tnY-qV-BEj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bMR-Jm-0ff"/>
                             <constraint firstItem="0m8-Oj-CV8" firstAttribute="centerY" secondItem="jox-g6-hUk" secondAttribute="centerY" id="eRz-cy-1Ab"/>
+                            <constraint firstItem="65d-0C-MEP" firstAttribute="top" secondItem="fYD-Ys-RIg" secondAttribute="top" id="jdn-Tn-jm7"/>
                             <constraint firstItem="tnY-qV-BEj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="mHg-hZ-Y0E"/>
+                            <constraint firstItem="65d-0C-MEP" firstAttribute="bottom" secondItem="fYD-Ys-RIg" secondAttribute="bottom" id="oe0-js-vBb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tnY-qV-BEj" secondAttribute="trailing" constant="20" id="pPt-LZ-yyt"/>
                             <constraint firstItem="mUo-gY-Nfg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="psN-WI-lJ4"/>
                             <constraint firstItem="f2h-yp-Lts" firstAttribute="leading" secondItem="jox-g6-hUk" secondAttribute="leading" id="r2d-8N-ib1"/>
+                            <constraint firstItem="65d-0C-MEP" firstAttribute="trailing" secondItem="fYD-Ys-RIg" secondAttribute="trailing" id="wVD-n9-t0u"/>
                             <constraint firstItem="f2h-yp-Lts" firstAttribute="bottom" secondItem="jox-g6-hUk" secondAttribute="bottom" id="yf7-Ht-wRq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DYX-tZ-QOf" secondAttribute="trailing" constant="30" id="yvg-8h-hKu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GrS-3d-SOu"/>
                     <connections>
+                        <outlet property="btnGender" destination="65d-0C-MEP" id="5Tm-X9-4GS"/>
                         <outlet property="btnRegister" destination="tnY-qV-BEj" id="3IY-RA-vfm"/>
                         <outlet property="genderTF" destination="fYD-Ys-RIg" id="ICO-q4-O1K"/>
                         <outlet property="imgVw" destination="jox-g6-hUk" id="J30-xL-Rdr"/>

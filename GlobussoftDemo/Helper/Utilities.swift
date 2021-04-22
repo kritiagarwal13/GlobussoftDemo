@@ -10,6 +10,7 @@ import CoreLocation
 
 class Utilities {
     
+    static var picker : PickerView?
     
     static var mainStoryboard: UIStoryboard {
         return UIStoryboard(name:StoryBoardConstants.kMainStoryBoard,bundle: Bundle.main)
@@ -65,6 +66,16 @@ class Utilities {
         return storyboard
     }
 
+    class func initPicker(title:String,currentSelection:Int, delegate : PickerViewDelegate,data:[String]){
+        Utilities.topViewController()?.view.endEditing(true)
+        picker = PickerView.instanceFromNib()
+        picker?.delegate = delegate
+        picker?.frame = (Utilities.topViewController()?.view.frame) ?? UIApplication.shared.keyWindow!.bounds
+        Utilities.topViewController()?.view.addSubview(picker!)
+        picker?.setdata(arr: data, pickerTitle: title,currentSelection:currentSelection )
+        picker?.showPicker()
+    }
+    
 }
 
 
