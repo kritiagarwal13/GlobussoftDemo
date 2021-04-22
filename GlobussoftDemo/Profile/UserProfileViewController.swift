@@ -21,6 +21,7 @@ class UserProfileViewController: UIViewController {
     var userImage : UIImage?
     var isLiked = false
     var distanceAway = ""
+    var userLiked = false
     
     //MARK:- Life Cycle Methods
     override func viewDidLoad() {
@@ -58,7 +59,23 @@ class UserProfileViewController: UIViewController {
     
     @IBAction func likeTapped(_ sender: UIButton) {
         if let userDeets = userDetails {
-            likedUsers.append(userDeets)
+            if likedUsers.count > 0 {
+                for each in likedUsers {
+                    if each._id == userDeets._id {
+                        userLiked = true
+                    } else {
+                        userLiked = false
+                    }
+                }
+                
+                if !self.userLiked {
+                    likedUsers.append(userDeets)
+                } else {
+                    print("Already liked")
+                }
+            } else {
+                likedUsers.append(userDeets)
+            }
         }
         self.btnLike.backgroundColor = UIColor.link
         self.btnLike.setTitleColor(.white, for: .normal)
